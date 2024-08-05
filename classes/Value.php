@@ -14,6 +14,7 @@ enum Value{
     case Jack;
     case Queen;
     case King;
+    case Joker;
 
     public function value():int{
         return match($this){
@@ -29,7 +30,8 @@ enum Value{
             Value::Ten => 10,
             Value::Jack => 11,
             Value::Queen => 12,
-            Value::King => 13
+            Value::King => 13,
+            Value::Joker => 69,
         };
     }
 
