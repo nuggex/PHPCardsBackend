@@ -4,18 +4,16 @@ class Deck
 {
     public array $Deck;
 
-    public function __construct(array $skipValues = null)
+    public function __construct(array $skipValues = [])
     {
         foreach (Suit::cases() as $suit) {
             foreach (Value::cases() as $value) {
-                if (!in_array($value->value(), $skipValues)) {
+                if (!in_array($value, $skipValues)) {
                     $card = new Card($suit, $value);
                     $this->Deck[] = $card;
                 }
             }
-
         }
-
         $this->Shuffle();
     }
 
@@ -48,12 +46,7 @@ class Deck
         $half = intval(count($this->Deck) / 2);
         $left = array_slice($this->Deck, 0, $half);
         $right = array_slice($this->Deck, $half);
-        $cardsToMove = rand(0, 12);
 
-        //Move random amount of cards from left to Right
-        for ($i = 0; $i <= $cardsToMove; $i++) {
-            $right[] = array_splice($left, $i, 1);
-        }
         $shuffledDeck = array();
         while (!empty($left) || !empty($right)) {
             if (!empty($left)) {
@@ -73,7 +66,7 @@ class Deck
         $shuffledDeck = [];
         while (!empty($this->Deck)) {
             $chunkSize = rand(1, 5);
-            $chunk = array_Splice($this->Deck, 0, $chunkSize);
+            $chunk = array_splice($this->Deck, 0, $chunkSize);
             $shuffledDeck = array_merge($chunk, $shuffledDeck);
         }
         $this->Deck = $shuffledDeck;
@@ -90,6 +83,31 @@ class Deck
     public function Deal()
     {
 
+    }
+
+    public function DrawTop()
+    {
+        return array_splice($this->Deck, 0, 1);
+
+    }
+
+    public function BurnTop()
+    {
+        array_splice($this->Deck, 0, 1);
+        return null;
+    }
+
+    public function PutCardOnTop($card)
+    {
+        $top = array($card);
+        $this->Deck = array_merge($top, $this->Deck);
+
+    }
+
+    public function PutCardOnBottom($card)
+    {
+        $bottom = array($card);
+        $this->Deck = array_merge($this->Deck, $bottom);
     }
 
 }
