@@ -1,38 +1,18 @@
 <?php
 
-enum Value{
-    case Ace;
-    case Two;
-    case Three;
-    case Four;
-    case Five;
-    case Six;
-    case Seven;
-    case Eight;
-    case Nine;
-    case Ten;
-    case Jack;
-    case Queen;
-    case King;
-    case Joker;
-
-    public function value():int{
-        return match($this){
-            Value::Ace => 1,
-            Value::Two => 2,
-            Value::Three => 3,
-            Value::Four => 4,
-            Value::Five => 5,
-            Value::Six => 6,
-            Value::Seven => 7,
-            Value::Eight => 8,
-            Value::Nine => 9,
-            Value::Ten => 10,
-            Value::Jack => 11,
-            Value::Queen => 12,
-            Value::King => 13,
-            Value::Joker => 69,
-        };
-    }
-
+enum Value: int{
+    case Ace = 1;
+    case Two = 2;
+    case Three = 3;
+    case Four = 4;
+    case Five = 5;
+    case Six = 6;
+    case Seven = 7;
+    case Eight = 8;
+    case Nine = 9;
+    case Ten = 10;
+    case Jack = 11;
+    case Queen = 12;
+    case King = 13;
+    case Joker = 69;
 }
