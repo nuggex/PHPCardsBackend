@@ -1,11 +1,11 @@
 <?php
 
-enum Suit
+enum Suit: string
 {
-    case Hearts;
-    case Diamonds;
-    case Clubs;
-    case Spades;
+    case Hearts = "H";
+    case Diamonds = "D";
+    case Clubs = "C";
+    case Spades = "S";
 
     public function color(): string{
         return match($this){
