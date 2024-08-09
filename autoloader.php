@@ -2,6 +2,8 @@
 
 define('ROOT_DIR', dirname(__FILE__));
 const WEBROOT_DIR = ROOT_DIR . '/webroot/';
+
+require_once 'vendor/autoload.php';
 /**
  * Autoload classes from /classes/ directory. If namespaces are used then create matching subdirectory structure.
  */
