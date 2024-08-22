@@ -21,9 +21,12 @@ $server->on('message', function ($server, $frame) {
 
   if ($data->msg === "START") {
 
+    // TODO: We probably need some DB to store the game state in, sqlite or something else
+    // TODO: Create starting game state 
+
     foreach ($server->connections as $playerId) {
 
-      $res = [
+      $response = [
         "type" => "INIT_GAME",
         "gameType" => "PASKAHOUSU",
         "deck" => [
@@ -47,7 +50,7 @@ $server->on('message', function ($server, $frame) {
         ]
 
       ];
-      $server->push($playerId, json_encode($res));
+      $server->push($playerId, json_encode($response));
     }
   }
   if ($data->msg === "END_ROUND") {
@@ -62,7 +65,7 @@ $server->on('message', function ($server, $frame) {
       // TODO: Send the new deck state, cardsOnTable, otherPlayers and currentPlayer 
       // currentPlayer state data based on the playerId 
 
-      $res = [
+      $response = [
         "type" => "NEXT_ROUND",
         "deck" => [],
         "cardsOnTable" => [],
@@ -75,7 +78,7 @@ $server->on('message', function ($server, $frame) {
           "cardsInHand" => ["A1", "H7", "D10"]
         ]
       ];
-      $server->push($playerId, json_encode($res));
+      $server->push($playerId, json_encode($response));
     }
   }
 });
